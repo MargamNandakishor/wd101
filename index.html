@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background-color: Cyan;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid Cyan;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: cyan;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Registration Form</h1>
+
+<form id="registrationForm">
+    <table>
+        <tr>
+            <th>Name</th>
+            <td><input type="text" id="name" required></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><input type="email" id="email" required></td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td><input type="password" id="password" required></td>
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td><input type="date" id="dob" required></td>
+        </tr>
+        <tr>
+            <th>Accepted terms?</th>
+            <td><input type="checkbox" id="terms"> Accept Terms</td>
+        </tr>
+    </table>
+
+    <button type="submit">Submit</button>
+</form>
+
+<h2>Registered Users</h2>
+
+<table id="userTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Date of Birth</th>
+            <th>Accepted terms?</th>
+        </tr>
+    </thead>
+    <tbody id="userTableBody">
+        <!-- Initially empty -->
+    </tbody>
+</table>
+
+<script>
+// JavaScript to handle form submission and update the table
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get values from the form
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const dob = document.getElementById('dob').value;
+    const termsAccepted = document.getElementById('terms').checked;
+
+    // Create a new row in the user table
+    const tableBody = document.getElementById('userTableBody');
+    const newRow = tableBody.insertRow();
+
+    newRow.insertCell(0).innerText = name;
+    newRow.insertCell(1).innerText = email;
+    newRow.insertCell(2).innerText = password; // Note: Storing passwords like this is not secure!
+    newRow.insertCell(3).innerText = dob;
+    newRow.insertCell(4).innerText = termsAccepted ? 'true' : 'false';
+
+    // Clear the form
+    this.reset();
+});
+</script>
+
+</body>
+</html>
